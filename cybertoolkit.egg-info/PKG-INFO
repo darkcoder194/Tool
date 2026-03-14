@@ -6,4 +6,6 @@ Requires-Dist: requests
 Requires-Dist: dnspython
 Requires-Dist: python-whois
 Requires-Dist: pyfiglet
+Requires-Dist: psutil
+Requires-Dist: SpeechRecognition
 Dynamic: requires-dist

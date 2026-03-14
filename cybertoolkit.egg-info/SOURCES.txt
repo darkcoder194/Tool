@@ -1,3 +1,4 @@
+README.md
 setup.py
 cybertoolkit/__init__.py
 cybertoolkit/ai_assistant.py
@@ -16,14 +17,21 @@ cybertoolkit.egg-info/dependency_links.txt
 cybertoolkit.egg-info/entry_points.txt
 cybertoolkit.egg-info/requires.txt
 cybertoolkit.egg-info/top_level.txt
+cybertoolkit/modules/5.py
 cybertoolkit/modules/__init__.py
+cybertoolkit/modules/dir_brute.py
 cybertoolkit/modules/dns_lookup.py
+cybertoolkit/modules/github_search.py
 cybertoolkit/modules/hash_generator.py
+cybertoolkit/modules/headers.py
 cybertoolkit/modules/ip_lookup.py
 cybertoolkit/modules/network_info.py
 cybertoolkit/modules/network_monitor.py
 cybertoolkit/modules/password_strength.py
 cybertoolkit/modules/port_scanner.py
+cybertoolkit/modules/subdomain.py
+cybertoolkit/modules/tech_detect.py
+cybertoolkit/modules/voice_recognize.py
 cybertoolkit/modules/whois_lookup.py
 cybertoolkit/plugins/__init__.py
 cybertoolkit/plugins/loader.py

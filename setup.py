@@ -9,11 +9,13 @@ setup(
         "requests",
         "dnspython",
         "python-whois",
-        "pyfiglet"
+        "pyfiglet",
+        "psutil",
+        "SpeechRecognition"
     ],
     entry_points={
         "console_scripts": [
-            "cybertool=cybertoolkit.cli:run"
+            "cybertool=cybertoolkit.cli:start_cli"
         ]
     }
 )

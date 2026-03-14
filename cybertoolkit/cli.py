@@ -2,6 +2,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 from .module_registry import ModuleRegistry
+from . import updater
 
 console = Console()
 registry = ModuleRegistry()
@@ -25,12 +26,21 @@ def start_cli():
             elif command == 'reload':
                 registry.reload()
                 console.print("[green]Modules reloaded[/green]")
+            elif command == 'update':
+                updater.update()
+                console.print("[green]Updated to latest version.[/green]")
             else:
                 mod = registry.get_module(command)
                 if mod:
                     name, run_func = mod
                     try:
                         run_func(args)
+                    except TypeError:
+                        # Some modules define run() without args; fall back to no-arg call.
+                        try:
+                            run_func()
+                        except Exception as e:
+                            console.print(f"[red]Error: {e}[/red]")
                     except Exception as e:
                         console.print(f"[red]Error: {e}[/red]")
                 else:
@@ -45,6 +55,7 @@ def show_help():
     table.add_column("Description")
     table.add_row("tools", "List available tools")
     table.add_row("reload", "Reload modules and plugins")
+    table.add_row("update", "Pull latest changes from git")
     table.add_row("exit", "Exit the toolkit")
     table.add_row("<tool> <args>", "Run a tool with arguments")
     console.print(table)
