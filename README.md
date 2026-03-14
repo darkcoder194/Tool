@@ -143,7 +143,6 @@ Available modules include:
 - **port**: Port Scanner
 - **ip**: IP Lookup
 - **pass**: Password Strength
-- **gh-search**: GitHub Tool Search
 - **netmon**: Network Monitor
 - **voice**: Voice Recognition
 - **dns**: DNS Lookup
@@ -187,7 +186,12 @@ python -m cybertoolkit.main <command> <args>
 - `help` - Show available commands
 - `tools` - List all loaded modules and plugins
 - `reload` - Reload modules and plugins
+- `update` - Update the toolkit to latest version
 - `exit` - Exit the toolkit
+
+### System Commands
+- `install` - Install plugin from GitHub repository
+- `gh-search` - Search GitHub repositories
 
 ### Available Modules
 
@@ -199,11 +203,9 @@ python -m cybertoolkit.main <command> <args>
 | `port` | Multi-threaded port scanner | `port <ip> [start_port] [end_port]` |
 | `sub` | Subdomain enumeration | `sub <domain>` |
 | `headers` | HTTP header analysis | `headers <url>` |
-| `gh-search` | GitHub repository search | `gh-search <query>` |
 | `dir` | Directory brute-force scanner | `dir <url> [threads]` |
 | `tech` | Web technology detector | `tech <url>` |
 | `voice` | Voice recognition (speech-to-text) | `voice` |
-| `install` | Install plugin from GitHub | `install <github-repo-url>` |
 | `ai-build` | Generate new module template | `ai-build <id> <name>` |
 | `dashboard` | Show dashboard panel | `dashboard` |
 | `hash` | Hash generator (MD5/SHA1/SHA256) | `hash <text>` |
