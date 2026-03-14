@@ -1,16 +1,20 @@
 # CyberToolkit
 
-A modular, advanced cybersecurity framework designed for ethical hackers, penetration testers, and security researchers. Built with Python, featuring an interactive CLI, auto-loading modules, and extensible plugin system.
+A professional, modular cybersecurity framework designed for ethical hackers, penetration testers, and security researchers. Built with Python, featuring a powerful CLI, auto-loading modules, extensible plugin system, and configuration management.
 
 ## Features
 
+- **Professional CLI**: Command-line interface with subcommands, help, and version
 - **Modular Architecture**: Auto-loading modules and plugins
+- **Configuration Management**: JSON-based config with CLI management
+- **Logging Support**: Configurable logging levels and file output
 - **Interactive Dashboard**: Rich terminal UI with commands
 - **Multi-threaded Tools**: Fast scanning and brute-forcing
 - **Cross-Platform**: Works on Linux, Kali Linux, and Termux
 - **Voice Recognition**: Speech-to-text commands
 - **AI Module Generator**: Create custom tools easily
 - **Plugin Installer**: Git-based plugin management
+- **Auto-Update**: Built-in update mechanism
 
 ## Installation
 
@@ -35,9 +39,38 @@ pip install -r requirements.txt
 
 ## Usage
 
+### Command Line Interface
+
+CyberToolkit now supports a professional command-line interface:
+
+```bash
+# Show help
+cybertool --help
+
+# Show version
+cybertool --version
+
+# List all available modules
+cybertool list
+
+# Run a specific module
+cybertool run <module_id> [args...]
+
+# Update the toolkit
+cybertool update
+
+# Manage configuration
+cybertool config list
+cybertool config get <key>
+cybertool config set <key> <value>
+
+# Start interactive mode
+cybertool interactive
+```
+
 ### Interactive Mode
 ```bash
-python -m cybertoolkit.main
+cybertool
 ```
 This starts the interactive shell:
 ```
@@ -46,8 +79,90 @@ Type 'help' for commands
 cybertool >
 ```
 
-### Direct Command Mode
+### Examples
+
 ```bash
+# DNS lookup
+cybertool run dns google.com
+
+# Port scan
+cybertool run port 192.168.1.1
+
+# List modules
+cybertool list
+
+# Update toolkit
+cybertool update
+
+# Set log level
+cybertool --log-level DEBUG run port 127.0.0.1
+```
+
+## Configuration
+
+Configuration is stored in `~/.cybertoolkit/config.json`. You can manage it via CLI:
+
+```bash
+# List all config
+cybertool config list
+
+# Get a specific value
+cybertool config get log_level
+
+# Set a value
+cybertool config set log_level DEBUG
+```
+
+## Modules
+
+Available modules include:
+
+- **sub**: Subdomain Finder
+- **5**: hm
+- **headers**: HTTP Headers Analyzer
+- **whois**: WHOIS Lookup
+- **hash**: Hash Generator
+- **dir**: Directory Brute-Force Scanner
+- **net**: Network Info
+- **tech**: Web Technology Detector
+- **port**: Port Scanner
+- **ip**: IP Lookup
+- **pass**: Password Strength
+- **gh-search**: GitHub Tool Search
+- **netmon**: Network Monitor
+- **voice**: Voice Recognition
+- **dns**: DNS Lookup
+
+## Development
+
+### Adding New Modules
+
+Create a new Python file in the `cybertoolkit/modules/` directory with a `tool_info()` function:
+
+```python
+def tool_info():
+    return {
+        'id': 'mytool',
+        'name': 'My Custom Tool',
+        'run': run_tool
+    }
+
+def run_tool(args):
+    # Your tool logic here
+    pass
+```
+
+### Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 python -m cybertoolkit.main <command> <args>
 ```
 
