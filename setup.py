@@ -15,7 +15,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "cybertool=cybertoolkit.cli:start_cli"
+            "cybertool=cybertoolkit.main:main"
         ]
     }
 )

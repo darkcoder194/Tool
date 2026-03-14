@@ -27,6 +27,7 @@ A professional, modular cybersecurity framework designed for ethical hackers, pe
 git clone https://github.com/darkcoder194/Tool.git
 cd Tool
 pip install -r requirements.txt
+pip install .
 ```
 
 ### For Termux (Android)
@@ -35,6 +36,7 @@ pkg install python git
 git clone https://github.com/darkcoder194/Tool.git
 cd Tool
 pip install -r requirements.txt
+pip install .
 ```
 
 ## Usage
