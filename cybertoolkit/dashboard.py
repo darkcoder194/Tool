@@ -1,53 +1,22 @@
 from rich.console import Console
-from rich.live import Live
 from rich.panel import Panel
-from rich.table import Table
-import random
-import time
-import os
-import pyfiglet
+from rich.text import Text
 
 console = Console()
 
+def tool_info():
+    return {
+        "id": "dashboard",
+        "name": "Interactive Dashboard",
+        "run": run
+    }
 
-def matrix_line():
-    chars = "01#@$%&"
-    return "".join(random.choice(chars) for _ in range(70))
-
-
-def get_system_info():
-
-    try:
-        user = os.getenv("USER")
-    except:
-        user = "unknown"
-
-    info = Table.grid()
-
-    info.add_row(f"User: {user}")
-    info.add_row(f"Platform: Termux / Android")
-    info.add_row(f"Toolkit: CyberToolkit")
-
-    return Panel(info, title="System Info")
-
-
-def command_panel():
-
-    table = Table()
-
-    table.add_column("Command")
-    table.add_column("Description")
-
-    table.add_row("tools", "show installed tools")
-    table.add_row("ip", "IP lookup")
-    table.add_row("dns", "DNS lookup")
-    table.add_row("port", "port scanner")
-    table.add_row("install <repo>", "install plugin")
-    table.add_row("ai", "AI assistant")
-    table.add_row("update", "update toolkit")
-    table.add_row("exit", "exit toolkit")
-
-    return Panel(table, title="Commands")
+def run(args):
+    text = Text("CyberToolkit Dashboard", style="bold green")
+    panel = Panel.fit(text, title="Welcome")
+    console.print(panel)
+    console.print("[cyan]Use 'tools' to list available modules[/cyan]")
+    console.print("[cyan]Use 'help' for commands[/cyan]")
 
 
 def show_dashboard():

@@ -1,35 +1,30 @@
-import http.client
-from urllib.parse import urlparse
+import requests
+from rich.table import Table
+from rich.console import Console
+
+console = Console()
 
 def tool_info():
     return {
         "id": "headers",
-        "name": "HTTP Header Analyzer",
+        "name": "HTTP Headers Analyzer",
         "run": run
     }
 
-def run():
-
-    url = input("URL: ")
-
-    if not url.startswith("http"):
-        url = "http://" + url
-
-    parsed = urlparse(url)
-
-    conn = http.client.HTTPConnection(parsed.netloc)
-
+def run(args):
+    if not args:
+        console.print("[red]Usage: headers <url>[/red]")
+        return
+    url = args[0]
+    if not url.startswith('http'):
+        url = 'http://' + url
     try:
-
-        conn.request("GET", "/")
-
-        res = conn.getresponse()
-
-        print("\nHTTP Headers:\n")
-
-        for k,v in res.getheaders():
-            print(f"{k}: {v}")
-
+        response = requests.head(url, timeout=10)
+        table = Table(title=f"Headers for {url}")
+        table.add_column("Header", style="cyan")
+        table.add_column("Value")
+        for key, value in response.headers.items():
+            table.add_row(key, value)
+        console.print(table)
     except Exception as e:
-
-        print("Error:", e)
+        console.print(f"[red]Error: {e}[/red]")

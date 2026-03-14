@@ -1,53 +1,44 @@
-import os
+from rich.console import Console
 
-MODULE_PATH = "cybertoolkit/modules"
+console = Console()
 
-def run_ai_builder():
+def tool_info():
+    return {
+        "id": "ai-build",
+        "name": "AI Module Generator",
+        "run": run
+    }
 
-    print("\nCyberToolkit AI Module Builder\n")
+def run(args):
+    if not args:
+        console.print("[red]Usage: ai-build <module_id> <module_name>[/red]")
+        return
+    module_id = args[0]
+    module_name = ' '.join(args[1:]) if len(args) > 1 else module_id
+    template = f'''from rich.console import Console
 
-    name = input("Tool name: ")
-    cmd = input("Command id: ")
-    feature = input("Feature (ip / dns / port / headers / custom): ")
-
-    file_path = f"{MODULE_PATH}/{cmd}.py"
-
-    if feature == "ip":
-
-        code = f'''
-import socket
+console = Console()
 
 def tool_info():
     return {{
-        "id": "{cmd}",
-        "name": "{name}",
+        "id": "{module_id}",
+        "name": "{module_name}",
         "run": run
     }}
 
-def run():
-
-    ip = input("Enter IP: ")
-
-    try:
-        host = socket.gethostbyaddr(ip)
-        print("Hostname:", host[0])
-    except:
-        print("No host found")
+def run(args):
+    # Your tool logic here
+    console.print("Hello from {module_name}!")
+    if args:
+        console.print(f"Arguments: {{args}}")
 '''
-
-    elif feature == "dns":
-
-        code = f'''
-import socket
-
-def tool_info():
-    return {{
-        "id": "{cmd}",
-        "name": "{name}",
-        "run": run
-    }}
-
-def run():
+    filename = f"modules/{module_id}.py"
+    try:
+        with open(filename, 'w') as f:
+            f.write(template)
+        console.print(f"[green]Module {module_id}.py created in modules/[/green]")
+    except Exception as e:
+        console.print(f"[red]Error: {e}[/red]")
 
     domain = input("Domain: ")
 
