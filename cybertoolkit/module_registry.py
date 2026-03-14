@@ -17,10 +17,19 @@ class ModuleRegistry:
     def _load_from_dir(self, dirname):
         if not os.path.exists(dirname):
             os.makedirs(dirname)
-        for file in os.listdir(dirname):
-            if file.endswith('.py') and not file.startswith('__'):
-                path = os.path.join(dirname, file)
-                spec = importlib.util.spec_from_file_location(file[:-3], path)
+
+        # Walk the directory tree to support plugins installed as repos (subdirectories)
+        for root, _, files in os.walk(dirname):
+            for file in files:
+                if not file.endswith('.py') or file.startswith('__'):
+                    continue
+                path = os.path.join(root, file)
+
+                # Build a stable module name based on path so imports don't collide
+                rel_path = os.path.relpath(path, dirname).replace(os.sep, '.')
+                module_name = f"{dirname.replace(os.sep, '.')}.{rel_path[:-3]}"
+
+                spec = importlib.util.spec_from_file_location(module_name, path)
                 module = importlib.util.module_from_spec(spec)
                 try:
                     spec.loader.exec_module(module)
@@ -28,7 +37,7 @@ class ModuleRegistry:
                         info = module.tool_info()
                         self.modules[info['id']] = (info['name'], info['run'])
                 except Exception as e:
-                    print(f"Error loading {file}: {e}")
+                    print(f"Error loading {path}: {e}")
 
     def get_module(self, id):
         return self.modules.get(id)
