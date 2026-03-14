@@ -5,6 +5,7 @@ cybertoolkit/ai_assistant.py
 cybertoolkit/ai_builder.py
 cybertoolkit/auth.py
 cybertoolkit/cli.py
+cybertoolkit/config.py
 cybertoolkit/dashboard.py
 cybertoolkit/main.py
 cybertoolkit/marketplace.py

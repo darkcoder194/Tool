@@ -10,9 +10,11 @@ setup(
         "dnspython",
         "python-whois",
         "pyfiglet",
-        "psutil",
-        "SpeechRecognition"
+        "psutil"
     ],
+    extras_require={
+        "voice": ["SpeechRecognition"]
+    },
     entry_points={
         "console_scripts": [
             "cybertool=cybertoolkit.main:main"

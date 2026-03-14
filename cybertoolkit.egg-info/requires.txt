@@ -4,4 +4,6 @@ dnspython
 python-whois
 pyfiglet
 psutil
+
+[voice]
 SpeechRecognition

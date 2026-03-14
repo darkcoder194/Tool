@@ -37,6 +37,19 @@ git clone https://github.com/darkcoder194/Tool.git
 cd Tool
 pip install -r requirements.txt
 pip install .
+# For voice recognition (optional):
+pip install SpeechRecognition
+# May require: pkg install portaudio
+```
+
+### For Kali Linux
+```bash
+sudo apt update
+sudo apt install python3 python3-pip git
+git clone https://github.com/darkcoder194/Tool.git
+cd Tool
+pip3 install -r requirements.txt
+pip3 install .
 ```
 
 ## Usage
